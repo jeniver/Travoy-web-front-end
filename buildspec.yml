@@ -7,45 +7,14 @@ phases:
     commands:
       - echo Installing dependencies...
       - npm ci --legacy-peer-deps
-      - echo Dependencies installed successfully
-
-  pre_build:
-    commands:
-      - echo Starting pre-build phase...
-      - echo Node version: $(node --version)
-      - echo NPM version: $(npm --version)
-      - echo Current directory: $(pwd)
-      - echo Listing project files:
-      - "ls -la"
 
   build:
     commands:
-      - echo Building the React app with Vite...
+      - echo Building the React app...
       - npm run build
-      - echo Build completed successfully
-      - echo Build output contents:
-      - "ls -la dist/"
-      - echo Build artifacts size:
-      - "du -sh dist/"
-
-  post_build:
-    commands:
-      - echo Post-build phase...
-      - echo Verifying build output...
-      - echo Checking for index.html...
-      - "ls -la dist/"
-      - echo Checking for assets directory...
-      - "ls -la dist/assets/"
-      - echo Build verification completed
 
 artifacts:
   files:
     - '**/*'
   base-directory: dist
   discard-paths: no
-  name: travoy-web-build-$(date +%Y-%m-%d-%H-%M-%S)
-
-cache:
-  paths:
-    - 'node_modules/**/*'
-    - '.npm/**/*'
