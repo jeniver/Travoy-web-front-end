@@ -1,0 +1,49 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm ci --legacy-peer-deps
+      - echo Dependencies installed successfully
+
+  pre_build:
+    commands:
+      - echo Starting pre-build phase...
+      - echo Node version: $(node --version)
+      - echo NPM version: $(npm --version)
+      - echo Current directory: $(pwd)
+      - echo Listing project files:
+      - ls -la
+
+  build:
+    commands:
+      - echo Building the React app with Vite...
+      - npm run build
+      - echo Build completed successfully
+      - echo Build output contents:
+      - ls -la dist/
+      - echo Build artifacts size:
+      - du -sh dist/
+
+  post_build:
+    commands:
+      - echo Post-build phase...
+      - echo Verifying build output...
+      - test -f dist/index.html && echo "index.html found" || echo "ERROR: index.html not found"
+      - test -d dist/assets && echo "assets directory found" || echo "ERROR: assets directory not found"
+      - echo Build verification completed
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist
+  discard-paths: no
+  name: travoy-web-build-$(date +%Y-%m-%d-%H-%M-%S)
+
+cache:
+  paths:
+    - 'node_modules/**/*'
+    - '.npm/**/*'
