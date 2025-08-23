@@ -32,18 +32,10 @@ phases:
     commands:
       - echo Post-build phase...
       - echo Verifying build output...
-      - |
-        if [ -f dist/index.html ]; then
-          echo "index.html found"
-        else
-          echo "ERROR: index.html not found"
-        fi
-      - |
-        if [ -d dist/assets ]; then
-          echo "assets directory found"
-        else
-          echo "ERROR: assets directory not found"
-        fi
+      - echo Checking for index.html...
+      - test -f dist/index.html && echo "index.html found" || echo "ERROR: index.html not found"
+      - echo Checking for assets directory...
+      - test -d dist/assets && echo "assets directory found" || echo "ERROR: assets directory not found"
       - echo Build verification completed
 
 artifacts:
