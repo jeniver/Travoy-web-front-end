@@ -1,0 +1,58 @@
+/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
+
+@keyframes passport-flip-out {
+  0% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(-90deg);
+    opacity: 0;
+  }
+}
+@keyframes passport-flip-in {
+  0% {
+    transform: perspective(1200px) rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+@keyframes passport-flip-out-reverse {
+  0% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(90deg);
+    opacity: 0;
+  }
+}
+@keyframes passport-flip-in-reverse {
+  0% {
+    transform: perspective(1200px) rotateY(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+.animate-passport-flip-out {
+  animation: passport-flip-out 0.5s ease forwards;
+}
+.animate-passport-flip-in {
+  animation: passport-flip-in 0.5s ease forwards;
+}
+.animate-passport-flip-out-reverse {
+  animation: passport-flip-out-reverse 0.5s ease forwards;
+}
+.animate-passport-flip-in-reverse {
+  animation: passport-flip-in-reverse 0.5s ease forwards;
+}
