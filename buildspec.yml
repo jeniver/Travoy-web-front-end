@@ -16,7 +16,7 @@ phases:
       - echo NPM version: $(npm --version)
       - echo Current directory: $(pwd)
       - echo Listing project files:
-      - ls -la
+      - "ls -la"
 
   build:
     commands:
@@ -24,9 +24,9 @@ phases:
       - npm run build
       - echo Build completed successfully
       - echo Build output contents:
-      - ls -la dist/
+      - "ls -la dist/"
       - echo Build artifacts size:
-      - du -sh dist/
+      - "du -sh dist/"
 
   post_build:
     commands:
